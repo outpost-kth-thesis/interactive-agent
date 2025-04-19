@@ -28,23 +28,24 @@ driver = webdriver.Chrome(options=options)
 driver.get("https://kth.se/")
 
 
+combined_regex = '''//button | 
+//input[@type='button' or @type='submit' or @type='reset' or @type='text'] | 
+//textarea'''
+elements = driver.find_elements(By.XPATH, combined_regex)
+
+for el in elements:
+    parent1 = el.find_element(By.XPATH, "..")
+    parent2 = el.find_element(By.XPATH, "../..")
+    
+    print("---")
+    print("Element HTML:")
+    print(el.get_attribute("outerHTML"))
+    
+    print("Parent 1 HTML:")
+    print(parent1.get_attribute("outerHTML"))
+
+    print("Parent 2 HTML:")
+    print(parent2.get_attribute("outerHTML"))
+
+
 driver.close()
-# combined_regex = '''//button | 
-# //input[@type='button' or @type='submit' or @type='reset' or @type='text'] | 
-# //textarea'''
-# elements = driver.find_elements(By.XPATH, combined_regex)
-
-# for el in elements:
-#     parent1 = el.find_element(By.XPATH, "..")
-#     parent2 = el.find_element(By.XPATH, "../..")
-    
-#     print("---")
-#     print("Element HTML:")
-#     print(el.get_attribute("outerHTML"))
-    
-#     print("Parent 1 HTML:")
-#     print(parent1.get_attribute("outerHTML"))
-
-#     print("Parent 2 HTML:")
-#     print(parent2.get_attribute("outerHTML"))
-
