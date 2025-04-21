@@ -11,6 +11,7 @@ COPY ./.garbage/chrome.deb ./
 RUN apt install -y ./chrome.deb
 
 COPY ./.garbage/mitmproxy/* /usr/bin/
+COPY scripts scripts
 
 RUN pip install selenium
 RUN pip install mitmproxy
