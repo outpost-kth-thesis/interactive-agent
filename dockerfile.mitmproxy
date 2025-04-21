@@ -1,0 +1,5 @@
+FROM mitmproxy/mitmproxy
+
+COPY scripts scripts
+
+CMD ["mitmdump", "-p", "8080", "-q", "-s", "scripts/flow.py"]
